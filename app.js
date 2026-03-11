@@ -138,6 +138,7 @@ function handleClick(event) {
     renderProducts();
   } else {
     productContainer.removeEventListener('click', handleClick);
+    showResults();
     console.log('Voting finished');
   }
 }
@@ -154,13 +155,13 @@ function showResults() {
   // create list container / element
   const ul = document.createElement('ul');
 
-  // loop through every product
+  // loop through every product in array
   for (let product of Product.allProducts) {
 
     // create list item
     const li = document.createElement('li');
 
-    // fill it with results text
+    // fill li with results combined from constructor
     li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
 
     // add list item to list
@@ -176,4 +177,4 @@ function showResults() {
 //=====================================================
 
 renderProducts();
-showResults();
+// showResults();
