@@ -142,8 +142,38 @@ function handleClick(event) {
   }
 }
 
-//======================================
-// starts the program and load images  |
-//=====================================
+//====================
+// results function  |
+//===================
+
+function showResults() {
+
+  // reference aside element from html
+  const results = document.getElementById('results');
+
+  // create list container / element
+  const ul = document.createElement('ul');
+
+  // loop through every product
+  for (let product of Product.allProducts) {
+
+    // create list item
+    const li = document.createElement('li');
+
+    // fill it with results text
+    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
+
+    // add list item to list
+    ul.appendChild(li);
+  }
+
+  // add the list to the aside
+  results.appendChild(ul);
+}
+
+//======================================================
+// starts the program, load images, and results after  |
+//=====================================================
 
 renderProducts();
+showResults();

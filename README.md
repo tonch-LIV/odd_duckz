@@ -16,4 +16,5 @@ votes, votez, VOTES!
   - added event listener for click and click handler for execution, added function invocation.
   - images load on browser, will need to edit orentation and dimensions; fixed spelling on 'cthulhu' image so it would populate.
   - fixed spelling in `<head>` for styles.css link; was missing 's' off 'styles'.
-  - speeling error within css was also preventing styles from applying; renaming of id
+  - speeling error within css was also preventing styles from applying; renaming of id.
+  - crated `results()` function.
