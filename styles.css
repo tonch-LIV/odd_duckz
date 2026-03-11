@@ -1,0 +1,20 @@
+/* * {} */
+
+/*parent container is flex, auto row; items centered on row and spaced 20px between eachother */
+#product_Container { 
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/*img dimensions fixed; 
+height: auto maintains aspect ratio, 
+object-fit: contain prevents stretching if differing dimensions*/
+#product_Container img {
+  width: 200px; /*maybe 250? */
+  height: auto;
+  object-fit: contain;
+}
+/* can include,
+max-width: 30%;
+to account for smaller screen

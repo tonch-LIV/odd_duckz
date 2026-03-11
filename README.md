@@ -3,5 +3,17 @@
 votes, votez, VOTES!
 
 - 03.10.26
-  - added base files (html, css, js, json)
-  - added image assets
+  - added base files (html, css, js, json).
+  - added image assets.
+  - created img placeholders in html with ids, added basic styling format to keep image dimensions same regardless of image.
+  - created constructor that stores image file name / path, # of times shown, and times clicked.
+  - created static `allProducts` property that pushes to global array.
+  - defined new object instances
+  - created js variables to select html elements
+  - created `renderProducts()` fucntion to generate three random pictures, ensure no duplicates are shown, increase counter, etc. (notes included in js).
+  - added global variable to track 25 rounds.
+  - created reference for container through html id link.
+  - added event listener for click and click handler for execution, added function invocation.
+  - images load on browser, will need to edit orentation and dimensions; fixed spelling on 'cthulhu' image so it would populate.
+  - fixed spelling in `<head>` for styles.css link; was missing 's' off 'styles'.
+  - speeling error within css was also preventing styles from applying; renaming of id
