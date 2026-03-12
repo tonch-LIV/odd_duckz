@@ -24,3 +24,6 @@ votes, votez, VOTES!
   - added 'use strict'
   - added lighthouse report, before branch; 100%
   - ![lighthouse report' 100% :)](img/03.12_before.viz.branch.png)
+- dataviz branch
+  - linked Chart.js in nested `<script>` element within `<head>`, added `<canvas>` element (with `id=resultsChart`).
+  - created chart function,

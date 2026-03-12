@@ -20,7 +20,7 @@ function Product(fileName) {
   this.timesClicked = 0;
 
   Product.allProducts.push(this);
-}
+};
 
 //=============================
 // static array for products  |
@@ -103,7 +103,7 @@ function renderProducts() {
   product2.timesShown++;
   product3.timesShown++;
 
-}
+};
 
 //=====================================================
 // DOM referenced container elements from html by id  |
@@ -142,7 +142,7 @@ function handleClick(event) {
     showResults();
     console.log('Voting finished');
   }
-}
+};
 
 //====================
 // results function  |
@@ -171,7 +171,52 @@ function showResults() {
 
   // add the list to the aside
   results.appendChild(ul);
-}
+};
+
+//==================
+// chart function  |
+//=================
+
+function renderChart() {
+
+  const labels = [];
+  const votes = [];
+  const views = [];
+
+  for (let product of Product.allProducts) {
+    labels.push(product.fileName.split('.')[0]);
+    votes.push(product.timesClicked);
+    views.push(product.timesShown);
+  }
+
+  const ctx = document.getElementById('resultsChart').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Votes',
+          data: votes
+        },
+        {
+          label: 'Times Viewed',
+          data: views
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Odd Duck Product Results'
+        }
+      }
+    }
+  });
+};
 
 //======================================================
 // starts the program, load images, and results after  |
