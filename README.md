@@ -18,4 +18,7 @@ votes, votez, VOTES!
   - fixed spelling in `<head>` for styles.css link; was missing 's' off 'styles'.
   - speeling error within css was also preventing styles from applying; renaming of id.
   - crated `results()` function.
-  - fixed issue on lists not updating / voting results being added to 'master' list
+  - fixed issue on lists not updating / voting results being added to 'master' list, now results only show up after voting has completed with only choices displayed (and voted on); sans items not displayed.
+
+- 03.12.26
+  - added 'use strict'

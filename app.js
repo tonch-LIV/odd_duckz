@@ -1,3 +1,4 @@
+'use strict'
 
 //=================================================
 // DOM referenced image elements from html by id  |
@@ -24,7 +25,7 @@ function Product(fileName) {
 //=============================
 // static array for products  |
 // =========================== 
-// will receive data from new Products tahnks to last line in constructor function (push)
+// will receive data from new Products thanks to last line in constructor function (push)
 
 Product.allProducts = [];
 
@@ -177,4 +178,6 @@ function showResults() {
 //=====================================================
 
 renderProducts();
+
+// if i were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
 // showResults();
