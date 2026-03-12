@@ -22,3 +22,5 @@ votes, votez, VOTES!
 
 - 03.12.26
   - added 'use strict'
+  - added lighthouse report, before branch; 100%
+  - ![lighthouse report' 100% :)](img/03.12_before.viz.branch.png)
