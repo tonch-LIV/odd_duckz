@@ -27,3 +27,10 @@ votes, votez, VOTES!
 - dataviz branch
   - linked Chart.js in nested `<script>` element within `<head>`, added `<canvas>` element (with `id=resultsChart`).
   - created chart function,
+  - renamed `eslitor.json` to `eslintrc.json`.
+  - rearranged order of javascript by moving click handler till after `renderChart()`.
+  - added comments to `renderChart()`.
+  - moved results locations from `<aside>` to below pictures and sidexside of chart.
+  - created flexbox container to hold results and chart. updated comments abput DOM `.getElementById` to reflect being linked to `<div>`, not `<aside>`.
+  - added styling for `results_Container`, `resultsChart`, and `results`.
+  -

@@ -115,7 +115,87 @@ const productContainer = document.getElementById('product_Container');
 
 productContainer.addEventListener('click', handleClick);
 
-// click handler
+
+//====================
+// results function  |
+//===================
+
+function showResults() {
+
+  // reference div element id from html
+  const results = document.getElementById('results');
+
+  // create list container / element
+  const ul = document.createElement('ul');
+
+  // loop through every product in array
+  for (let product of Product.allProducts) {
+
+    // create list item
+    const li = document.createElement('li');
+
+    // fill li with results combined from constructor
+    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
+
+    // add list item to list
+    ul.appendChild(li);
+  }
+
+  // add the list to the div
+  results.appendChild(ul);
+};
+
+//==================
+// chart function  |
+//=================
+
+function renderChart() {
+
+  // empty arrays for chart data
+  const labels = [];
+  const votes = [];
+  const views = [];
+
+  // loops through every product object to extract data and feed Chart.js; removes extension
+  for (let product of Product.allProducts) {
+    labels.push(product.fileName.split('.')[0]); // push
+    votes.push(product.timesClicked); // vote count
+    views.push(product.timesShown); // view count
+  }
+
+  const ctx = document.getElementById('resultsChart').getContext('2d');
+
+  // new chart object; 
+  new Chart(ctx, {
+    type: 'bar', // will try different style (once i get first one working) to test accessibility
+    data: { // 'empty' arrays to supply data
+      labels: labels, // x-axis
+      datasets: [
+        {
+          label: 'Votes', // bar series
+          data: votes
+        },
+        {
+          label: 'Times Viewed', // 2nd bar series
+          data: views
+        }
+      ]
+    },
+    options: { // config settings
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Odd Duck Product Results'
+        }
+      }
+    }
+  });
+};
+
+//=================
+// click handler  |
+//================
 
 function handleClick(event) {
 
@@ -140,83 +220,11 @@ function handleClick(event) {
   } else {
     productContainer.removeEventListener('click', handleClick);
     showResults();
+    renderChart(); // 
     console.log('Voting finished');
   }
 };
 
-//====================
-// results function  |
-//===================
-
-function showResults() {
-
-  // reference aside element from html
-  const results = document.getElementById('results');
-
-  // create list container / element
-  const ul = document.createElement('ul');
-
-  // loop through every product in array
-  for (let product of Product.allProducts) {
-
-    // create list item
-    const li = document.createElement('li');
-
-    // fill li with results combined from constructor
-    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
-
-    // add list item to list
-    ul.appendChild(li);
-  }
-
-  // add the list to the aside
-  results.appendChild(ul);
-};
-
-//==================
-// chart function  |
-//=================
-
-function renderChart() {
-
-  const labels = [];
-  const votes = [];
-  const views = [];
-
-  for (let product of Product.allProducts) {
-    labels.push(product.fileName.split('.')[0]);
-    votes.push(product.timesClicked);
-    views.push(product.timesShown);
-  }
-
-  const ctx = document.getElementById('resultsChart').getContext('2d');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Votes',
-          data: votes
-        },
-        {
-          label: 'Times Viewed',
-          data: views
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Odd Duck Product Results'
-        }
-      }
-    }
-  });
-};
 
 //======================================================
 // starts the program, load images, and results after  |

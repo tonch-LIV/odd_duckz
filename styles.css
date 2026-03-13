@@ -4,7 +4,7 @@
 #product_Container { 
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 90px;
 }
 
 /*img dimensions fixed; 
@@ -17,4 +17,29 @@ object-fit: contain prevents stretching if differing dimensions*/
 }
 /* can include,
 max-width: 30%;
-to account for smaller screen
+to account for smaller screen */
+
+/* parent container that will keep children sxs */
+#results_Container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+  margin-top: 40px;
+  /*margin: 50px auto;
+  max-width: 1000px;*/
+  /*alternative spacing for items */
+}
+
+#resultsChart {
+  max-width: 800px; /* raised fromm 600 to prevent squishing */
+}
+
+#results ul {
+  list-style: none;
+}
+
+#results li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
