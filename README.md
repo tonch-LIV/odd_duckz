@@ -41,3 +41,8 @@ votes, votez, VOTES!
   - added button to add ability to restart voting without need to refresh page.
   - specified desctruction / clearing of old chart to avoid odd behavior.
   - merged dataViz with main branch, will style on next loadout.
+
+- 03.17.26
+  - added updated lighthouse report after mergung viz branch
+  - ![100% report again](img/03.17_after.viz.merge.png)
+  - 
