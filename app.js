@@ -161,9 +161,8 @@ function showResults() {
     // create list item
     const li = document.createElement('li');
 
-    // fill li with results combined from constructor
-    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
-
+    // fill li with results combined from constructor, make bold
+    li.innerHTML = `<strong>${product.fileName}</strong>: ${product.timesClicked} votes, shown ${product.timesShown} times`;
     // add list item to list
     ul.appendChild(li);
   }
@@ -205,20 +204,51 @@ function renderChart() {
       datasets: [
         {
           label: 'Votes', // bar series
-          data: votes
+          data: votes,
+          backgroundColor: 'rgba(28, 19, 209, 0.7)', // purple
         },
         {
           label: 'Times Viewed', // 2nd bar series
-          data: views
+          data: views,
+          backgroundColor: 'rgba(83, 71, 47, 0.7)', // gray
         }
       ]
     },
     options: { // config settings
       responsive: true,
+      maintainAspectRatio: false, //lets chart grow vertically
+
       plugins: {
         title: {
           display: true,
-          text: 'Odd Duck Product Results'
+          text: 'Odd Duck Product Results',
+          font: {
+            size: 22
+          }
+        },
+        legend: { //control over "Votes / Times viewed"
+          labels: {
+            font: {
+              size: 14
+            }
+          }
+        }
+      },
+
+      scales: { // cntrol over product names
+        x: {
+          ticks: {
+            font: {
+              size: 26
+            }
+          }
+        },
+        y: { //control over numbers
+          ticks: {
+            font: {
+              size: 16
+            }
+          }
         }
       }
     }
@@ -252,7 +282,8 @@ function handleClick(event) {
   } else {
     productContainer.removeEventListener('click', handleClick);
     showResults();
-    renderChart(); // 
+    renderChart();
+    document.getElementById('results_Container').style.display = 'flex';
     console.log('Voting finished');
   }
 };
@@ -262,6 +293,8 @@ function handleClick(event) {
 //========================
 
 function resetVoting() {
+
+  document.getElementById('results_Container').style.display = 'none';
 
   // resets vote counter
   totalVotes = 0;
@@ -303,5 +336,7 @@ function resetVoting() {
 
 renderProducts();
 
-// if i were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
+document.getElementById('results_Container').style.display = 'none';
+
+// if it were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
 // showResults();

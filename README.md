@@ -45,4 +45,16 @@ votes, votez, VOTES!
 - 03.17.26
   - added updated lighthouse report after merging viz branch.
   - ![100% report again](img/03.17_after.viz.merge.png)
-  - 
+  - branch created (dataStore).
+  - began styling; added css selctors for `<body>` and `<main>`.
+  - modified `product_Container` selector; widens gap between images as well as margin on top and bottom.
+  - added container for products, white background.
+  - added a placeholder container for results.
+  - styled results.
+  - styled and centered button.
+  - modified chart loading aspects.
+  - adding h1 heading.
+  - changed chart colors.
+  - styled iomages to zoom on hover.
+  - added fixed height to product container.
+  - chnaged background color.
