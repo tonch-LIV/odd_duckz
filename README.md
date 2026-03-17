@@ -43,6 +43,6 @@ votes, votez, VOTES!
   - merged dataViz with main branch, will style on next loadout.
 
 - 03.17.26
-  - added updated lighthouse report after mergung viz branch
+  - added updated lighthouse report after merging viz branch.
   - ![100% report again](img/03.17_after.viz.merge.png)
   - 
