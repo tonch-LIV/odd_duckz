@@ -40,3 +40,4 @@ votes, votez, VOTES!
   - modified click to specify click needs to happen on image not including container around it.
   - added button to add ability to restart voting without need to refresh page.
   - specified desctruction / clearing of old chart to avoid odd behavior.
+  - merged dataViz with main branch, will style on next loadout.
