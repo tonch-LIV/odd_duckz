@@ -33,4 +33,10 @@ votes, votez, VOTES!
   - moved results locations from `<aside>` to below pictures and sidexside of chart.
   - created flexbox container to hold results and chart. updated comments abput DOM `.getElementById` to reflect being linked to `<div>`, not `<aside>`.
   - added styling for `results_Container`, `resultsChart`, and `results`.
-  -
+
+- 03.16.26
+  - refactored `renderProducts()` function to account for checking not only duplicates in active round, but also repeated images in following rounds, and also accounts if need to regenerate new images. (added array toward end of function to store previous indexes).
+  - included a method to clear list, should new voting instace begin to avoid stackig list inside `showResults()`
+  - modified click to specify click needs to happen on image not including container around it.
+  - added button to add ability to restart voting without need to refresh page.
+  - specified desctruction / clearing of old chart to avoid odd behavior.

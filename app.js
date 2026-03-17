@@ -8,6 +8,9 @@ const img1 = document.getElementById('img1');
 const img2 = document.getElementById('img2');
 const img3 = document.getElementById('img3');
 
+// for button
+const resetBtn = document.getElementById('resetBtn');
+
 //==========================
 // constructor for images  |
 //=========================
@@ -36,11 +39,23 @@ Product.allProducts = [];
 
 let currentProducts = [];
 
+//========================================
+// array to store previous round images  |
+//=======================================
+
+let previousIndexes = [];
+
 //=========================================
 // round counter / tracker for 25 rounds  |
 //========================================
 
 let totalVotes = 0;
+
+//=====================================
+// storing chart to destroy it later  |
+//====================================
+
+let resultsChart = null;
 
 //===================
 // product objects  |
@@ -74,16 +89,23 @@ new Product('wine-glass.jpg');
 function renderProducts() {
 
   // generates three random selections within product array
-  let index1 = Math.floor(Math.random() * Product.allProducts.length);
-  let index2 = Math.floor(Math.random() * Product.allProducts.length);
-  let index3 = Math.floor(Math.random() * Product.allProducts.length);
+let index1 = Math.floor(Math.random() * Product.allProducts.length);
+let index2 = Math.floor(Math.random() * Product.allProducts.length);
+let index3 = Math.floor(Math.random() * Product.allProducts.length);
 
-  // loop to check no duplicate images / products are shown; if so, rerun random gen
-  while (index1 === index2 || index1 === index3 || index2 === index3) {
-    index1 = Math.floor(Math.random() * Product.allProducts.length);
-    index2 = Math.floor(Math.random() * Product.allProducts.length);
-    index3 = Math.floor(Math.random() * Product.allProducts.length);
-  }
+while ( //checks image does not match any other current image
+  index1 === index2 ||
+  index1 === index3 ||
+  index2 === index3 ||
+  // checks previous images
+  previousIndexes.includes(index1) ||
+  previousIndexes.includes(index2) ||
+  previousIndexes.includes(index3)
+) {   // reroll for new images, if needed*
+  index1 = Math.floor(Math.random() * Product.allProducts.length);
+  index2 = Math.floor(Math.random() * Product.allProducts.length);
+  index3 = Math.floor(Math.random() * Product.allProducts.length);
+}
 
   //covert array index into objects
   let product1 = Product.allProducts[index1];
@@ -103,6 +125,8 @@ function renderProducts() {
   product2.timesShown++;
   product3.timesShown++;
 
+  // storing previous indexes
+  previousIndexes = [index1, index2, index3];
 };
 
 //=====================================================
@@ -111,10 +135,10 @@ function renderProducts() {
 
 const productContainer = document.getElementById('product_Container');
 
-// event listener; run handleClick() anytime anything inside container receives a click
+// event listener; run handleClick() anytime image receives a click. reset semantic
 
 productContainer.addEventListener('click', handleClick);
-
+resetBtn.addEventListener('click', resetVoting);
 
 //====================
 // results function  |
@@ -124,6 +148,9 @@ function showResults() {
 
   // reference div element id from html
   const results = document.getElementById('results');
+
+  // clears list when new voting happens 
+  results.innerHTML = '';
 
   // create list container / element
   const ul = document.createElement('ul');
@@ -165,8 +192,13 @@ function renderChart() {
 
   const ctx = document.getElementById('resultsChart').getContext('2d');
 
+  // destroy old chart BEFORE creating a new one
+  if (resultsChart) {
+    resultsChart.destroy();
+  }
+
   // new chart object; 
-  new Chart(ctx, {
+  resultsChart = new Chart(ctx, {
     type: 'bar', // will try different style (once i get first one working) to test accessibility
     data: { // 'empty' arrays to supply data
       labels: labels, // x-axis
@@ -199,8 +231,8 @@ function renderChart() {
 
 function handleClick(event) {
 
-  // ignore / return nothing from empty space click
-  if (event.target === productContainer) {
+  // only repsonds if click happens on an image
+  if (event.target.tagName !== 'IMG') {
     return;
   }
 
@@ -224,6 +256,45 @@ function handleClick(event) {
     console.log('Voting finished');
   }
 };
+
+//=========================
+// button reset funvtion  |
+//========================
+
+function resetVoting() {
+
+  // resets vote counter
+  totalVotes = 0;
+
+  // resets previous round tracker
+  previousIndexes = [];
+
+  // resets product stats
+  for (let product of Product.allProducts) {
+    product.timesClicked = 0;
+    product.timesShown = 0;
+  }
+
+  // clears result list
+  document.getElementById('results').innerHTML = '';
+
+  // clears chart
+  if (resultsChart) {
+    resultsChart.destroy();
+    resultsChart = null;
+  }
+
+  // allows re-clicking
+  productContainer.removeEventListener('click', handleClick);
+  productContainer.addEventListener('click', handleClick);
+
+  // renders new images
+  renderProducts();
+
+  // console msg confirmation
+
+  console.log('Voting has begun anew.')
+}
 
 
 //======================================================
