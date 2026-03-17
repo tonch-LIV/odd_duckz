@@ -8,6 +8,9 @@ const img1 = document.getElementById('img1');
 const img2 = document.getElementById('img2');
 const img3 = document.getElementById('img3');
 
+// for button
+const resetBtn = document.getElementById('resetBtn');
+
 //==========================
 // constructor for images  |
 //=========================
@@ -20,7 +23,7 @@ function Product(fileName) {
   this.timesClicked = 0;
 
   Product.allProducts.push(this);
-}
+};
 
 //=============================
 // static array for products  |
@@ -36,11 +39,23 @@ Product.allProducts = [];
 
 let currentProducts = [];
 
+//========================================
+// array to store previous round images  |
+//=======================================
+
+let previousIndexes = [];
+
 //=========================================
 // round counter / tracker for 25 rounds  |
 //========================================
 
 let totalVotes = 0;
+
+//=====================================
+// storing chart to destroy it later  |
+//====================================
+
+let resultsChart = null;
 
 //===================
 // product objects  |
@@ -74,16 +89,23 @@ new Product('wine-glass.jpg');
 function renderProducts() {
 
   // generates three random selections within product array
-  let index1 = Math.floor(Math.random() * Product.allProducts.length);
-  let index2 = Math.floor(Math.random() * Product.allProducts.length);
-  let index3 = Math.floor(Math.random() * Product.allProducts.length);
+let index1 = Math.floor(Math.random() * Product.allProducts.length);
+let index2 = Math.floor(Math.random() * Product.allProducts.length);
+let index3 = Math.floor(Math.random() * Product.allProducts.length);
 
-  // loop to check no duplicate images / products are shown; if so, rerun random gen
-  while (index1 === index2 || index1 === index3 || index2 === index3) {
-    index1 = Math.floor(Math.random() * Product.allProducts.length);
-    index2 = Math.floor(Math.random() * Product.allProducts.length);
-    index3 = Math.floor(Math.random() * Product.allProducts.length);
-  }
+while ( //checks image does not match any other current image
+  index1 === index2 ||
+  index1 === index3 ||
+  index2 === index3 ||
+  // checks previous images
+  previousIndexes.includes(index1) ||
+  previousIndexes.includes(index2) ||
+  previousIndexes.includes(index3)
+) {   // reroll for new images, if needed*
+  index1 = Math.floor(Math.random() * Product.allProducts.length);
+  index2 = Math.floor(Math.random() * Product.allProducts.length);
+  index3 = Math.floor(Math.random() * Product.allProducts.length);
+}
 
   //covert array index into objects
   let product1 = Product.allProducts[index1];
@@ -103,7 +125,9 @@ function renderProducts() {
   product2.timesShown++;
   product3.timesShown++;
 
-}
+  // storing previous indexes
+  previousIndexes = [index1, index2, index3];
+};
 
 //=====================================================
 // DOM referenced container elements from html by id  |
@@ -111,16 +135,104 @@ function renderProducts() {
 
 const productContainer = document.getElementById('product_Container');
 
-// event listener; run handleClick() anytime anything inside container receives a click
+// event listener; run handleClick() anytime image receives a click. reset semantic
 
 productContainer.addEventListener('click', handleClick);
+resetBtn.addEventListener('click', resetVoting);
 
-// click handler
+//====================
+// results function  |
+//===================
+
+function showResults() {
+
+  // reference div element id from html
+  const results = document.getElementById('results');
+
+  // clears list when new voting happens 
+  results.innerHTML = '';
+
+  // create list container / element
+  const ul = document.createElement('ul');
+
+  // loop through every product in array
+  for (let product of Product.allProducts) {
+
+    // create list item
+    const li = document.createElement('li');
+
+    // fill li with results combined from constructor
+    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
+
+    // add list item to list
+    ul.appendChild(li);
+  }
+
+  // add the list to the div
+  results.appendChild(ul);
+};
+
+//==================
+// chart function  |
+//=================
+
+function renderChart() {
+
+  // empty arrays for chart data
+  const labels = [];
+  const votes = [];
+  const views = [];
+
+  // loops through every product object to extract data and feed Chart.js; removes extension
+  for (let product of Product.allProducts) {
+    labels.push(product.fileName.split('.')[0]); // push
+    votes.push(product.timesClicked); // vote count
+    views.push(product.timesShown); // view count
+  }
+
+  const ctx = document.getElementById('resultsChart').getContext('2d');
+
+  // destroy old chart BEFORE creating a new one
+  if (resultsChart) {
+    resultsChart.destroy();
+  }
+
+  // new chart object; 
+  resultsChart = new Chart(ctx, {
+    type: 'bar', // will try different style (once i get first one working) to test accessibility
+    data: { // 'empty' arrays to supply data
+      labels: labels, // x-axis
+      datasets: [
+        {
+          label: 'Votes', // bar series
+          data: votes
+        },
+        {
+          label: 'Times Viewed', // 2nd bar series
+          data: views
+        }
+      ]
+    },
+    options: { // config settings
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Odd Duck Product Results'
+        }
+      }
+    }
+  });
+};
+
+//=================
+// click handler  |
+//================
 
 function handleClick(event) {
 
-  // ignore / return nothing from empty space click
-  if (event.target === productContainer) {
+  // only repsonds if click happens on an image
+  if (event.target.tagName !== 'IMG') {
     return;
   }
 
@@ -140,38 +252,50 @@ function handleClick(event) {
   } else {
     productContainer.removeEventListener('click', handleClick);
     showResults();
+    renderChart(); // 
     console.log('Voting finished');
   }
-}
+};
 
-//====================
-// results function  |
-//===================
+//=========================
+// button reset funvtion  |
+//========================
 
-function showResults() {
+function resetVoting() {
 
-  // reference aside element from html
-  const results = document.getElementById('results');
+  // resets vote counter
+  totalVotes = 0;
 
-  // create list container / element
-  const ul = document.createElement('ul');
+  // resets previous round tracker
+  previousIndexes = [];
 
-  // loop through every product in array
+  // resets product stats
   for (let product of Product.allProducts) {
-
-    // create list item
-    const li = document.createElement('li');
-
-    // fill li with results combined from constructor
-    li.textContent = `${product.fileName}: ${product.timesClicked} votes, shown ${product.timesShown} times`;
-
-    // add list item to list
-    ul.appendChild(li);
+    product.timesClicked = 0;
+    product.timesShown = 0;
   }
 
-  // add the list to the aside
-  results.appendChild(ul);
+  // clears result list
+  document.getElementById('results').innerHTML = '';
+
+  // clears chart
+  if (resultsChart) {
+    resultsChart.destroy();
+    resultsChart = null;
+  }
+
+  // allows re-clicking
+  productContainer.removeEventListener('click', handleClick);
+  productContainer.addEventListener('click', handleClick);
+
+  // renders new images
+  renderProducts();
+
+  // console msg confirmation
+
+  console.log('Voting has begun anew.')
 }
+
 
 //======================================================
 // starts the program, load images, and results after  |

@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>Odd Ducks</title>
 
 </head>
@@ -16,9 +18,7 @@
 
   <main>
 
-    <aside id="results"><!--results will go here-->
-
-    </aside>
+    <aside><!--results used to go here--></aside>
 
     <section id="product_Container"><!--images will display here, id linked to clickListener-->
 
@@ -29,7 +29,16 @@
 
     </section>
 
-    <section><!--text will poplate here-->
+    <section id="results_Container"> <!--flexbox parent container-->
+
+      <div id="results"></div> <!--generates list of results-->
+
+      <canvas id="resultsChart"></canvas> <!--linked to add chart from chart.js-->
+    </section>
+
+    <button id="resetBtn">Start New Round!!</button> <!-- find way to move below list or below chart + change styling-->
+
+    <section><!--text(???) will poplate here-->
 
     </section>
   </main>
