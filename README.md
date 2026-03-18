@@ -57,4 +57,11 @@ votes, votez, VOTES!
   - changed chart colors.
   - styled iomages to zoom on hover.
   - added fixed height to product container.
-  - chnaged background color.
+  - changed background color.
+  - added variables for html/dom id's; `results` and `results_Container`.
+  - broke chart.js.
+  - fixed styling on header and h1.
+  - added transiiton for results container (still needs testing).
+  - changed color on button.
+  - deleted aside and extra section in html.
+  - 

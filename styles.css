@@ -2,19 +2,20 @@
 
 header {
   text-align: center;
-  margin-top: 80px;
-}
-
-h1 {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 16px;
+  margin: 40px auto;
+  padding: 20px;
 
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
+  max-width: 600px; /* keeps it from stretching too wide */
+}
 
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0; /* remove default spacing */
 }
 
 body { /* font styling */
@@ -86,10 +87,17 @@ to account for smaller screen */
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  opacity: 0; /* result fade in */
+  transition: opacity 0.3s ease;
+}
+
+#results_Container.show {
+  opacity: 1;
 }
 
 #resultsChart {
-  height: 4500px; /* prevents squishing */
+  height: 500px; /* prevents squishing */
   width: 600px; /* raised to prevent squishing */
   flex: 1; /* chart takes remaining space */
   min-width: 500px;
@@ -122,10 +130,10 @@ to account for smaller screen */
   font-size: 16px;
   font-weight: bold;
 
-  background-color: #4f46e5;
+  background-color: #ffffff;
   border-color: #eee;
 
-  color: white;
+  color: #4f46e5;
   border: none;
   border-radius: 8px;
 

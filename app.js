@@ -11,6 +11,10 @@ const img3 = document.getElementById('img3');
 // for button
 const resetBtn = document.getElementById('resetBtn');
 
+// for results and containers
+const resultsDiv = document.getElementById('results');
+const resultsContainer = document.getElementById('results_Container');
+
 //==========================
 // constructor for images  |
 //=========================
@@ -147,10 +151,10 @@ resetBtn.addEventListener('click', resetVoting);
 function showResults() {
 
   // reference div element id from html
-  const results = document.getElementById('results');
+  resultsDiv.innerHTML = '';
 
   // clears list when new voting happens 
-  results.innerHTML = '';
+  resultsDiv.innerHTML = '';
 
   // create list container / element
   const ul = document.createElement('ul');
@@ -239,7 +243,7 @@ function renderChart() {
         x: {
           ticks: {
             font: {
-              size: 26
+              size: 20
             }
           }
         },
@@ -283,7 +287,6 @@ function handleClick(event) {
     productContainer.removeEventListener('click', handleClick);
     showResults();
     renderChart();
-    document.getElementById('results_Container').style.display = 'flex';
     console.log('Voting finished');
   }
 };
@@ -294,7 +297,7 @@ function handleClick(event) {
 
 function resetVoting() {
 
-  document.getElementById('results_Container').style.display = 'none';
+  resultsContainer.style.display = 'none';
 
   // resets vote counter
   totalVotes = 0;
@@ -336,7 +339,7 @@ function resetVoting() {
 
 renderProducts();
 
-document.getElementById('results_Container').style.display = 'none';
+resultsContainer.style.display = 'none';
 
 // if it were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
 // showResults();
