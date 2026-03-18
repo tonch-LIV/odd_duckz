@@ -168,7 +168,7 @@ function showResults() {
     ul.appendChild(li);
   }
 
-  // add the list to the div
+  // add the list to the div (variable)
   resultsDiv.appendChild(ul);
 };
 
@@ -299,6 +299,7 @@ function resetVoting() {
 
   // fades
   resultsContainer.classList.remove('show');
+  
 
   // resets vote counter
   totalVotes = 0;

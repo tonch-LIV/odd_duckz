@@ -82,7 +82,7 @@ to account for smaller screen */
 /* parent container that will keep children side-by-side */
 #results_Container {
   display: flex;
-  flex-wrap: nowrap; /* force s-x-s */
+  flex-wrap: nowrap; /* force s-by-s */
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
