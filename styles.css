@@ -82,7 +82,7 @@ to account for smaller screen */
 /* parent container that will keep children side-by-side */
 #results_Container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* force s-x-s */
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
@@ -105,13 +105,13 @@ to account for smaller screen */
   height: 500px; /* prevents squishing */
   width: 600px; /* raised to prevent squishing */
   flex: 1; /* chart takes remaining space */
-  min-width: 500px;
+  min-width: 600px;
   max-width: 100%;
 }
 
 #results {
   min-width: 250px;
-  flex: 0 0 250px; /* fixed width for list */
+  flex: 0 0 300px;
 }
 
 #results ul {
@@ -143,10 +143,11 @@ to account for smaller screen */
   border-radius: 8px;
 
   cursor: pointer; /* chnages pointer when hovering */
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 #resetBtn:hover { /* changes color */
   background-color: #f69839;
   letter-spacing: 0.5px;
+  transform: translateY(-2px); 
 }

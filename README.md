@@ -67,3 +67,5 @@ votes, votez, VOTES!
   - added footer text.
   - added styling to header so itll grow when hovered on.
   - fixed chart; hiding on load and display upon finish.
+  - final check before starting on local storage.
+    - minor changes to css; dimensions, effects, cleaned up js variable calls and comments.

@@ -169,7 +169,7 @@ function showResults() {
   }
 
   // add the list to the div
-  results.appendChild(ul);
+  resultsDiv.appendChild(ul);
 };
 
 //==================
@@ -297,6 +297,7 @@ function handleClick(event) {
 
 function resetVoting() {
 
+  // fades
   resultsContainer.classList.remove('show');
 
   // resets vote counter
@@ -312,7 +313,7 @@ function resetVoting() {
   }
 
   // clears result list
-  document.getElementById('results').innerHTML = '';
+  resultsDiv.innerHTML = '';
 
   // clears chart
   if (resultsChart) {
