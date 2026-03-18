@@ -10,6 +10,11 @@ header {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
   max-width: 600px; /* keeps it from stretching too wide */
+  transition: transform 0.2s ease; /* grows over .2secs */
+}
+
+header:hover {
+  transform: scale(1.02); /* grows by 2% */
 }
 
 h1 {
@@ -142,6 +147,6 @@ to account for smaller screen */
 }
 
 #resetBtn:hover { /* changes color */
-  background-color: #3730a3;
+  background-color: #f69839;
   letter-spacing: 0.5px;
 }

@@ -150,9 +150,6 @@ resetBtn.addEventListener('click', resetVoting);
 
 function showResults() {
 
-  // reference div element id from html
-  resultsDiv.innerHTML = '';
-
   // clears list when new voting happens 
   resultsDiv.innerHTML = '';
 
@@ -287,6 +284,9 @@ function handleClick(event) {
     productContainer.removeEventListener('click', handleClick);
     showResults();
     renderChart();
+
+    resultsContainer.classList.add('show'); // when voting ends; results and chart render; `show ` is added; opeacity to 1
+
     console.log('Voting finished');
   }
 };
@@ -297,7 +297,7 @@ function handleClick(event) {
 
 function resetVoting() {
 
-  resultsContainer.style.display = 'none';
+  resultsContainer.classList.remove('show');
 
   // resets vote counter
   totalVotes = 0;
@@ -338,8 +338,6 @@ function resetVoting() {
 //=====================================================
 
 renderProducts();
-
-resultsContainer.style.display = 'none';
 
 // if it were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
 // showResults();

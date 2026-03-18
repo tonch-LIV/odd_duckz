@@ -64,4 +64,6 @@ votes, votez, VOTES!
   - added transiiton for results container (still needs testing).
   - changed color on button.
   - deleted aside and extra section in html.
-  - 
+  - added footer text.
+  - added styling to header so itll grow when hovered on.
+  - fixed chart; hiding on load and display upon finish.
