@@ -1,10 +1,63 @@
 /* * {} */
 
+header {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  max-width: 600px; /* keeps it from stretching too wide */
+  transition: transform 0.2s ease; /* grows over .2secs */
+}
+
+header:hover {
+  transform: scale(1.02); /* grows by 2% */
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0; /* remove default spacing */
+}
+
+body { /* font styling */
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  color: #222;
+
+  font-size: 22px;       /* base size */
+  line-height: 1.6;      /* improves readability */
+}
+
+main { /* centers on page, adds 'breathing room' and prevents stretching (chart) */
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#results h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 /*parent container is flex, auto row; items centered on row and spaced 20px between eachother */
 #product_Container { 
+  height: 360px;
   display: flex;
   justify-content: center;
-  gap: 90px;
+  gap: 130px;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 90px;
+
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
 }
 
 /*img dimensions fixed; 
@@ -14,25 +67,51 @@ object-fit: contain prevents stretching if differing dimensions*/
   width: 200px; /*maybe 250? */
   height: auto;
   object-fit: contain;
+
+  transition: transform .2s ease; /* smooth animation */
 }
 /* can include,
 max-width: 30%;
 to account for smaller screen */
 
-/* parent container that will keep children sxs */
+#product_Container img:hover {
+  transform: scale(1.1); /* zoom effect */
+  cursor: pointer;
+}
+
+/* parent container that will keep children side-by-side */
 #results_Container {
   display: flex;
+  flex-wrap: nowrap; /* force s-by-s */
   justify-content: center;
   align-items: flex-start;
-  gap: 100px;
-  margin-top: 40px;
-  /*margin: 50px auto;
-  max-width: 1000px;*/
-  /*alternative spacing for items */
+  gap: 40px;
+  margin: 20px auto;
+  padding: 40px;
+
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  opacity: 0; /* result fade in */
+  transition: opacity 0.3s ease;
+}
+
+#results_Container.show {
+  opacity: 1;
 }
 
 #resultsChart {
-  max-width: 800px; /* raised fromm 600 to prevent squishing */
+  height: 500px; /* prevents squishing */
+  width: 600px; /* raised to prevent squishing */
+  flex: 1; /* chart takes remaining space */
+  min-width: 600px;
+  max-width: 100%;
+}
+
+#results {
+  min-width: 250px;
+  flex: 0 0 300px;
 }
 
 #results ul {
@@ -40,6 +119,45 @@ to account for smaller screen */
 }
 
 #results li {
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+
+  font-weight: 500; /* bold-ish */
+}
+
+#resetBtn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 24px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  background-color: #ffffff;
+  border-color: #eee;
+
+  color: #f69839;
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer; /* chnages pointer when hovering */
+  transition: all 0.2s ease;
+}
+
+#resetBtn:hover { /* changes color */
+  background-color: #4f46e5;
+  letter-spacing: 0.5px;
+  transform: translateY(-2px); 
+}
+
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  /* text-align: center; */
+  height: 60px;
+  background-color: #ffffff;
 }

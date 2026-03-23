@@ -45,4 +45,37 @@ votes, votez, VOTES!
 - 03.17.26
   - added updated lighthouse report after merging viz branch.
   - ![100% report again](img/03.17_after.viz.merge.png)
-  - 
+  - branch created (dataStore).
+  - began styling; added css selctors for `<body>` and `<main>`.
+  - modified `product_Container` selector; widens gap between images as well as margin on top and bottom.
+  - added container for products, white background.
+  - added a placeholder container for results.
+  - styled results.
+  - styled and centered button.
+  - modified chart loading aspects.
+  - adding h1 heading.
+  - changed chart colors.
+  - styled iomages to zoom on hover.
+  - added fixed height to product container.
+  - changed background color.
+  - added variables for html/dom id's; `results` and `results_Container`.
+  - broke chart.js.
+  - fixed styling on header and h1.
+  - added transiiton for results container (still needs testing).
+  - changed color on button.
+  - deleted aside and extra section in html.
+  - added footer text.
+  - added styling to header so itll grow when hovered on.
+  - fixed chart; hiding on load and display upon finish.
+  - final check before starting on local storage.
+    - minor changes to css; dimensions, effects, cleaned up js variable calls and comments.
+  - added `loadFromLocalStorage` (+ invocation) and `saveToLocalStorage` function.
+    - deleted global `new Product` instances and included them within local stoarge function.
+    - added `saveToLocalStorage` inside `handleClick` function.
+  - changed chart colors.
+  - added footer styling (but its broken).
+  - modified button colors.
+- 03.22.26
+  - fixed footer styling.
+  - data is being saved. but stacking... will need to pevent from saving more than one / the previous round.
+  - will merge to main for now and fix on next itteration.
