@@ -155,9 +155,9 @@ to account for smaller screen */
 #footer {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  padding: 10px;
   /* text-align: center; */
   height: 60px;
-  width: 110px;
   background-color: #ffffff;
 }

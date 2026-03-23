@@ -67,16 +67,19 @@ let resultsChart = null;
 
 function loadFromLocalStorage() {
 
-  // 1: get stored data
+  // prevents duplication
+  Product.allProducts = [];
+
+  // 1. get stored data
   const storedProducts = localStorage.getItem('products');
 
-  // 2: check if it exists
+  // 2. check if it exists
   if (storedProducts) {
 
-    // 3: convert string to object
+    // 3. convert string to object
     const parsedProducts = JSON.parse(storedProducts);
 
-    // 4: rebuild Product instances
+    // 4. rebuild Product instances
     for (let item of parsedProducts) {
 
       let product = new Product(item.fileName);
@@ -87,7 +90,7 @@ function loadFromLocalStorage() {
 
   } else {
 
-    // 5: no saved data? then create fresh products
+    // 5. no saved data? then create fresh products
     new Product('bag.jpg');
     new Product('banana.jpg');
     new Product('bathroom.jpg');
@@ -108,7 +111,7 @@ function loadFromLocalStorage() {
     new Product('water-can.jpg');
     new Product('wine-glass.jpg');
   }
-}
+};
 
 
 //=================================
@@ -292,7 +295,7 @@ function saveToLocalStorage() {
 
   // store in browser; key: 'products'
   localStorage.setItem('products', stringifiedProducts);
-}
+};
 
 //=================
 // click handler  |
@@ -315,19 +318,17 @@ function handleClick(event) {
     }
   }
 
-  // will covert srray to string (stringify product.allproducts)
-  // store it localstorage
-  saveToLocalStorage();
-
   // less than 25? run renderProducts() again; else, stop voting (removes evemtListener)
   if (totalVotes < 25) {
     renderProducts();
+    saveToLocalStorage();
   } else {
     productContainer.removeEventListener('click', handleClick);
     showResults();
     renderChart();
 
     resultsContainer.classList.add('show'); // when voting ends; results and chart render; `show ` is added; opeacity to 1
+    saveToLocalStorage();
 
     console.log('Voting finished');
   }
@@ -345,6 +346,8 @@ function resetVoting() {
 
   // resets vote counter
   totalVotes = 0;
+
+  localStorage.removeItem('products'); // clears saved data
 
   // resets previous round tracker
   previousIndexes = [];
@@ -368,14 +371,14 @@ function resetVoting() {
   // console msg confirmation
 
   console.log('Voting has begun anew.')
-}
+};
 
 
 //==================================================================
 // starts the program, load images, and previous results (if any)  |
 //=================================================================
 
-loadFromLocalStorage();
+loadFromLocalStorage(); // checks if saved data exists
 
 renderProducts();
 

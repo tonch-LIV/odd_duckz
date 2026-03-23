@@ -75,3 +75,7 @@ votes, votez, VOTES!
   - changed chart colors.
   - added footer styling (but its broken).
   - modified button colors.
+- 03.22.26
+  - fixed footer styling.
+  - data is being saved. but stacking... will need to pevent from saving more than one / the previous round.
+  - will merge to main for now and fix on next itteration.
