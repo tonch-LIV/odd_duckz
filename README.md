@@ -79,3 +79,5 @@ votes, votez, VOTES!
   - fixed footer styling.
   - data is being saved. but stacking... will need to pevent from saving more than one / the previous round.
   - will merge to main for now and fix on next itteration.
+  - lighthouse report 
+  - ![91% report...](img/03.22_post_dataStore.merge.png)
