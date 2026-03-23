@@ -61,30 +61,55 @@ let totalVotes = 0;
 
 let resultsChart = null;
 
-//===================
-// product objects  |
-// =================
-// ;no variables since stored inside array as indexes
+//=====================
+// load localStorage  |
+//====================
 
-new Product('bag.jpg');
-new Product('banana.jpg');
-new Product('bathroom.jpg');
-new Product('boots.jpg');
-new Product('breakfast.jpg');
-new Product('bubblegum.jpg');
-new Product('chair.jpg');
-new Product('cthulhu.jpg');
-new Product('dog-duck.jpg');
-new Product('dragon.jpg');
-new Product('pen.jpg');
-new Product('pet-sweep.jpg');
-new Product('scissors.jpg');
-new Product('shark.jpg');
-new Product('sweep.png');
-new Product('tauntaun.jpg');
-new Product('unicorn.jpg');
-new Product('water-can.jpg');
-new Product('wine-glass.jpg');
+function loadFromLocalStorage() {
+
+  // 1: get stored data
+  const storedProducts = localStorage.getItem('products');
+
+  // 2: check if it exists
+  if (storedProducts) {
+
+    // 3: convert string to object
+    const parsedProducts = JSON.parse(storedProducts);
+
+    // 4: rebuild Product instances
+    for (let item of parsedProducts) {
+
+      let product = new Product(item.fileName);
+
+      product.timesClicked = item.timesClicked;
+      product.timesShown = item.timesShown;
+    }
+
+  } else {
+
+    // 5: no saved data? then create fresh products
+    new Product('bag.jpg');
+    new Product('banana.jpg');
+    new Product('bathroom.jpg');
+    new Product('boots.jpg');
+    new Product('breakfast.jpg');
+    new Product('bubblegum.jpg');
+    new Product('chair.jpg');
+    new Product('cthulhu.jpg');
+    new Product('dog-duck.jpg');
+    new Product('dragon.jpg');
+    new Product('pen.jpg');
+    new Product('pet-sweep.jpg');
+    new Product('scissors.jpg');
+    new Product('shark.jpg');
+    new Product('sweep.png');
+    new Product('tauntaun.jpg');
+    new Product('unicorn.jpg');
+    new Product('water-can.jpg');
+    new Product('wine-glass.jpg');
+  }
+}
+
 
 //=================================
 // render images on html function |
@@ -211,7 +236,7 @@ function renderChart() {
         {
           label: 'Times Viewed', // 2nd bar series
           data: views,
-          backgroundColor: 'rgba(83, 71, 47, 0.7)', // gray
+          backgroundColor: 'rgba(234, 132, 23, 0.74)', // gray
         }
       ]
     },
@@ -257,6 +282,19 @@ function renderChart() {
 };
 
 //=================
+// save function  |
+//================
+
+function saveToLocalStorage() {
+
+  // convert array to string
+  const stringifiedProducts = JSON.stringify(Product.allProducts);
+
+  // store in browser; key: 'products'
+  localStorage.setItem('products', stringifiedProducts);
+}
+
+//=================
 // click handler  |
 //================
 
@@ -276,6 +314,10 @@ function handleClick(event) {
       product.timesClicked++;
     }
   }
+
+  // will covert srray to string (stringify product.allproducts)
+  // store it localstorage
+  saveToLocalStorage();
 
   // less than 25? run renderProducts() again; else, stop voting (removes evemtListener)
   if (totalVotes < 25) {
@@ -307,12 +349,6 @@ function resetVoting() {
   // resets previous round tracker
   previousIndexes = [];
 
-  // resets product stats
-  for (let product of Product.allProducts) {
-    product.timesClicked = 0;
-    product.timesShown = 0;
-  }
-
   // clears result list
   resultsDiv.innerHTML = '';
 
@@ -335,9 +371,11 @@ function resetVoting() {
 }
 
 
-//======================================================
-// starts the program, load images, and results after  |
-//=====================================================
+//==================================================================
+// starts the program, load images, and previous results (if any)  |
+//=================================================================
+
+loadFromLocalStorage();
 
 renderProducts();
 

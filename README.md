@@ -69,3 +69,9 @@ votes, votez, VOTES!
   - fixed chart; hiding on load and display upon finish.
   - final check before starting on local storage.
     - minor changes to css; dimensions, effects, cleaned up js variable calls and comments.
+  - added `loadFromLocalStorage` (+ invocation) and `saveToLocalStorage` function.
+    - deleted global `new Product` instances and included them within local stoarge function.
+    - added `saveToLocalStorage` inside `handleClick` function.
+  - changed chart colors.
+  - added footer styling (but its broken).
+  - modified button colors.
