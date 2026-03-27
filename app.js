@@ -347,7 +347,11 @@ function resetVoting() {
   // resets vote counter
   totalVotes = 0;
 
-  localStorage.removeItem('products'); // clears saved data
+  // RESET all product data on button press (so that each new round starts fresh count)
+  for (let product of Product.allProducts) {
+    product.timesClicked = 0;
+    product.timesShown = 0;
+  }
 
   // resets previous round tracker
   previousIndexes = [];

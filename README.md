@@ -70,7 +70,7 @@ votes, votez, VOTES!
   - final check before starting on local storage.
     - minor changes to css; dimensions, effects, cleaned up js variable calls and comments.
   - added `loadFromLocalStorage` (+ invocation) and `saveToLocalStorage` function.
-    - deleted global `new Product` instances and included them within local stoarge function.
+    - deleted global `new Product` instances and included them within local storage function.
     - added `saveToLocalStorage` inside `handleClick` function.
   - changed chart colors.
   - added footer styling (but its broken).
@@ -79,5 +79,7 @@ votes, votez, VOTES!
   - fixed footer styling.
   - data is being saved. but stacking... will need to pevent from saving more than one / the previous round.
   - will merge to main for now and fix on next itteration.
-  - lighthouse report 
+  - lighthouse report
   - ![91% report...](img/03.22_post_dataStore.merge.png)
+- 03.27.26
+  - added block to `resetVoting` to remedy data persistence issue of data stacking/accumulating (isolated to button, refreshing page retains dataset).
