@@ -318,7 +318,7 @@ function handleClick(event) {
 
   // identify which picture was clicked; currentProducts = array of three from renderProducts(); add tally to product chosen
   for (let product of currentProducts) {
-    if (event.target.src.includes(product.fileName)) {
+    if (event.target.alt === product.fileName.split('.')[0]) {
       product.timesClicked++;
     }
   }

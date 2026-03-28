@@ -33,6 +33,13 @@ votes, votez, VOTES!
 - Persisting data across sessions.
 - Reconstructing objects from JSON.
 
+## Technical Decisions
+
+- Used constructor functions instead of classes to reinforce core JavaScript fundamentals.
+- Leveraged localStorage for persistence without introducing backend complexity.
+- Implemented a custom randomization algorithm to prevent repeated image bias.
+- Explicitly destroy/recreate Chart.js instances to avoid memory leaks and rendering bugs.
+
 ## Live Demo
 
 [View Site](https://tonch-liv.github.io/odd_duckz/)
@@ -127,5 +134,6 @@ might delete idk
   - added landing type description to readme (up top).
   - added lighthouse report (91!).
   - ![final report, ](img/03.27_final.report.png)
-  - modified readme description, features, highlights, etc.
+  - modified readme description, features, highlights, etc. to include technical decisions.
   - included js snippet to display indication to start voting.
+  - modified click detection to avoid any possible url errors that uses new alt syntax.
