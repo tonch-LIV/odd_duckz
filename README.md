@@ -1,18 +1,37 @@
 # odd_duckz / Odd Duck Voting App
 
+A data-driven UI experiment with persistent state, user interaction tracking, and visualization.  
+
+This project simulates a product research tool used by marketing teams to measure user preference through repeated exposure and interaction tracking.  
+Users vote on product images, while the application tracks impressions and selections, persisting data across sessions and visualizing results.
+
 votes, votez, VOTES!
 
 ## Features
 
-- Randomized product voting
-- Data persistence with `localStorage`
-- Interactive charts through use of Chart.js
+- Randomized product voting.
+- Tracks user interaction data (clicks + impressions) in real time.
+- Data persistence with `localStorage` across sessions using browser storage.
+- Prevents selection bias by avoiding repeating images display.
+- Dynamically rendered & interactive charts through use of Chart.js.
+- Clean reset of state for controlled experiment cycles.
+
+## Highlights
+
+- Object-oriented architecture using constructor functions; (`Product`).
+- State management via a centralized `Product.allProducts` array.
+- Custom randomization algorithm preventing duplicate selections (`renderProducts`, `previousIndexes`).
+- Data persistence using localStorage + JSON serialization/deserialization; `loadFromLocalStorage`, `saveToLocalStorage`.
+- Rehydration of persisted data into fully functional object instances through constructor reconstruction (`loadFromLocalStorage` constructor loop).
+- Event-driven UI updates with DOM event listeners (`handleClick`, `addEventListener`).
+- Dynamic DOM rendering for displaying results (`showResults`).
+- Chart rendering lifecycle management with destroy/recreate logic (`renderChart`, `resultsChart.destroy()`).
 
 ## Learned
 
-- Managing application state
-- Persisting data across sessions
-- Reconstructing objects from JSON
+- Managing application state.
+- Persisting data across sessions.
+- Reconstructing objects from JSON.
 
 ## Live Demo
 
@@ -107,4 +126,6 @@ might delete idk
   - added dynamically changing alt text per image cycled in `renderProducts()`.
   - added landing type description to readme (up top).
   - added lighthouse report (91!).
-  - ![final report, ](img/)
+  - ![final report, ](img/03.27_final.report.png)
+  - modified readme description, features, highlights, etc.
+  - included js snippet to display indication to start voting.

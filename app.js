@@ -391,5 +391,5 @@ loadFromLocalStorage(); // checks if saved data exists
 
 renderProducts();
 
-// if it were to run right away as soon as page loads, result would be 'two' lists being displayed. function already included within handleClick(); line 141
-// showResults();
+// show empty state before voting starts
+resultsDiv.innerHTML = '<p>No data yet. Start voting!</p>';
