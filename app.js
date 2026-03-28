@@ -152,6 +152,11 @@ while ( //checks image does not match any other current image
   img2.src = product2.imagePath;
   img3.src = product3.imagePath;
 
+  // dynamic alt text for image displayed, removes extension from name
+  img1.alt = product1.fileName.split('.')[0];
+  img2.alt = product2.fileName.split('.')[0];
+  img3.alt = product3.fileName.split('.')[0];
+
   //counter to increase times shown
   product1.timesShown++;
   product2.timesShown++;

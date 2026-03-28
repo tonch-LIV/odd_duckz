@@ -1,6 +1,27 @@
-# odd_duckz
+# odd_duckz / Odd Duck Voting App
 
 votes, votez, VOTES!
+
+## Features
+
+- Randomized product voting
+- Data persistence with `localStorage`
+- Interactive charts through use of Chart.js
+
+## Learned
+
+- Managing application state
+- Persisting data across sessions
+- Reconstructing objects from JSON
+
+## Live Demo
+
+[View Site](https://tonch-liv.github.io/odd_duckz/)
+
+## Screenshots
+
+might delete idk
+(include your chart + lighthouse score)
 
 - 03.10.26
   - added base files (html, css, js, json).
@@ -83,3 +104,7 @@ votes, votez, VOTES!
   - ![91% report...](img/03.22_post_dataStore.merge.png)
 - 03.27.26
   - added block to `resetVoting` to remedy data persistence issue of data stacking/accumulating (isolated to button, refreshing page retains dataset).
+  - added dynamically changing alt text per image cycled in `renderProducts()`.
+  - added landing type description to readme (up top).
+  - added lighthouse report (91!).
+  - ![final report, ](img/)
